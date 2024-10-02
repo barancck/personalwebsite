@@ -7,10 +7,24 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #030365;
     color: white;
     padding: 20px;
     text-align: center;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -26,7 +40,7 @@ h1 {
 }
 
 h2 {
-    color: #4CAF50;
+    color: #050582;
 }
 
 ul {
