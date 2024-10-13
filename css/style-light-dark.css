@@ -29,6 +29,23 @@ header {
     margin-bottom: 10px;
 }
 
+#visit-button {
+    background-color: #eb2525;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 20px;
+    display: inline-block;
+}
+
+#visit-button:hover {
+    background-color: #ff0000;
+}
+
 /* Toggle Switch Styling */
 .switch {
     position: relative;

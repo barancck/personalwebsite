@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Places I Have Visited - Baran Çiçek</title>
+    <link rel="icon" href="images/space-shuttle.png" type="image/x-icon">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="css/test.css">
+</head>
+<body>
+
+<div id="map" style="width: 100%; height: 100vh;"></div>
+
+<div id="menu" style="position: absolute; top: 10px; left: 10px; background-color: white; padding: 10px; border-radius: 5px; z-index: 1;">
+    <input id="satellite-streets-v12" type="radio" name="rtoggle" value="satellite" checked="checked">
+    <label for="satellite-streets-v12">Satellite Streets</label>
+    <input id="streets-v12" type="radio" name="rtoggle" value="streets">
+    <label for="streets-v12">Streets</label>
+    <input id="outdoors-v12" type="radio" name="rtoggle" value="outdoors">
+    <label for="outdoors-v12">Outdoors</label>
+</div>
+<button id="back-button" onclick="goBack()">Go Back to Home Page</button>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYmFyYW5jY2siLCJhIjoiY2xmZWExOGRiMGtqYjQ2bHJ1Z2EwOWM4cyJ9.kZbE8M1Ky_D65oBWGAUbOA';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/satellite-streets-v12', // style URL
+        center: [39.86558297236142, 32.73386039943825], // starting position [lng, lat]
+        zoom: 1 // starting zoom
+    });
+
+    const layerList = document.getElementById('menu');
+    const inputs = layerList.getElementsByTagName('input');
+
+    for (const input of inputs) {
+        input.onclick = (layer) => {
+            const layerId = layer.target.id;
+            map.setStyle('mapbox://styles/mapbox/' + layerId);
+        };
+    }
+
+    // Example places you've visited
+    const places = [
+        { name: 'Ankara, Turkey', coordinates: [32.8597, 39.9334] },
+        { name: 'Warsaw, Poland', coordinates: [21.0122, 52.2297] },
+        { name: 'Zagreb, Croatia', coordinates: [15.9819, 45.8150] },
+        { name: 'Gela, Bulgaria', coordinates: [24.6845, 41.6374] }
+    ];
+
+    places.forEach(place => {
+        new mapboxgl.Marker()
+            .setLngLat(place.coordinates)
+            .setPopup(new mapboxgl.Popup().setHTML(`<h3>${place.name}</h3>`))
+            .addTo(map);
+    });
+</script>
+<script>
+    function goBack() {
+        window.location.href = 'index.html'; // Ana sayfanın yolu
+    }
+</script>
+</body>
+</html>
